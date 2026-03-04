@@ -2,12 +2,12 @@ import streamlit as st
 import google.generativeai as genai
 
 # 1. API 키 입력 (본인의 키로 교체하세요)
-MY_KEY = st.secrets["Gemini_api_key"] 
+MY_KEY = st.secrets["GEMINI_api_key"] 
 # 웹 페이지 설정
 st.set_page_config(page_title="보험 스크립트 생성기", layout="centered")
 
 # 2. Gemini 설정 및 모델 자동 선택
-def setup_model(api_key):
+def setup_model(MY_KEY):
     try:
         genai.configure(api_key=api_key)
         # 내 계정에서 사용 가능한 모델 리스트 확인
@@ -63,4 +63,5 @@ if st.button("스크립트 생성하기 ✨", use_container_width=True):
                 # 결과물 복사 텍스트 영역
                 st.text_area("결과물 복사하기", value=response.text, height=200)
             except Exception as e:
+
                 st.error(f"생성 실패: {e}")
