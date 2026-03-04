@@ -7,7 +7,7 @@ MY_KEY = st.secrets["GEMINI_API_KEY"]
 st.set_page_config(page_title="보험 스크립트 생성기", layout="centered")
 
 # 2. Gemini 설정 및 모델 자동 선택
-def setup_model(MY_KEY):
+def setup_model(API_KEY):
     try:
         genai.configure(api_key=_MY_KEY)
         # 내 계정에서 사용 가능한 모델 리스트 확인
@@ -65,4 +65,5 @@ if st.button("스크립트 생성하기 ✨", use_container_width=True):
             except Exception as e:
 
                 st.error(f"생성 실패: {e}")
+
 
