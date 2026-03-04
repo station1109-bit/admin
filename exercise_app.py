@@ -9,7 +9,9 @@ st.set_page_config(page_title="보험 스크립트 생성기", layout="centered"
 # 2. Gemini 설정 및 모델 자동 선택
 def setup_model(API_KEY):
     try:
-        genai.configure(API_KEY=API_KEY)
+        # 이 부분이 핵심입니다! 매개변수 이름을 소문자 api_key로 써야 합니다.
+        genai.configure(api_key=API_KEY) 
+        
         # 내 계정에서 사용 가능한 모델 리스트 확인
         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
         
@@ -65,6 +67,7 @@ if st.button("스크립트 생성하기 ✨", use_container_width=True):
             except Exception as e:
 
                 st.error(f"생성 실패: {e}")
+
 
 
 
